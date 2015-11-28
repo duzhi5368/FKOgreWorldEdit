@@ -1,0 +1,9 @@
+As a member of this CELayoutEditor team, please take the following into account:
+
+*Do not add / commit any binary files, doxygen files and such. In short, everything which
+can be re-created on your own system should not be in CVS. This keeps the repos small
+and clean.
+
+For each official cegui release, there is a corresponding editor cvs "tag", e.g. v-0-4-1. When
+a bug fix or a new features gets commited, try to do that in an earlier version's branch, so that
+not only the head-users benefit from that.

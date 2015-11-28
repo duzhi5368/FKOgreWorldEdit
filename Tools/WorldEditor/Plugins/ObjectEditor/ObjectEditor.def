@@ -1,0 +1,7 @@
+; ObjectEditor.def : Declares the module parameters for the DLL.
+
+LIBRARY      "ObjectEditor"
+
+EXPORTS
+    ; Explicit exports can go here
+getPlugin

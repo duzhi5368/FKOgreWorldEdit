@@ -1,0 +1,308 @@
+CELayoutEditor 0.6.0
+http://www.cegui.org.uk
+
+Copyright 2004 - 2007 CELayoutEditor Team & Contributing Authors
+
+This document provides a low-level view (SVN update reports) of the relevant changes made to the system. For a high-level view (overall changes between releases) check Changelog.txt.
+
+Note that this file is not meant to replace the SVN history (which you can use to consult all the performed modifications), but instead give you a better understanding of what has been done so far. Also keep in mind that this list is not exhaustive.
+
+--------------------------------------------------------------------------------------------
+
+18-12-2007(fjeronimo)
+--> see http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2825
+- New: Property grid - Several new features and enhancements were added to the property grid. The property grid now obeys the following rules: 
+	* Editable properties will have a white background in the 'Value' column. Readonly properties will display a light grey background instead. 
+	* "Fake" properties (name, and udim values) will have their value displayed in green. 
+	* "Real" CEGUI properties are divided in two groups: common properties (i.e. properties that appear in EVERY single widget in the current user selection) will have their value displayed in black; Non common properties' (appear in at least one but less that the whole selection) values appear in blueish tones. 
+	* Properties that maintain their default value (across all widgets in the current user selection that support them) appear in normal font weight. Those whose value is no longer default appear in bold. 
+	* In multi-selection, properties that have a common value across all widgets that support them in the current user selection display the value as is. If the value varies across the selection elements, the entry appears empty in the property grid. 
+	* Changes made to a property value affect all widgets in the current user selection that support it.
+An image showing these changes is located at http://www.cegui.org.uk/gallery/displayimage.php?pid=25&fullsize=1. 
+- New: Exception severity - The VEH handler now verifies the exception severity and ignores all that are not errors or warnings since they aren't harmful to the program's execution. 
+- New: Re-Thrown exceptions - The application now detects re-thrown exceptions as a special case while trying to obtain its type. This allows the user to differentiate this normal scenario from others that lead to malformed exceptions. 
+- New: Stack trace limitation - CELayoutEditor now limits the number of retained stack traces by the VEH handler while a try/catch block isn't reached. This safeguard avoids any potential problems (read log space) in external code where the number of re-thrown or "eaten" exceptions might reach astounding levels. The MAXIMUM_STACK_TRACES define can be manipulated at will if debugging for a specific problem. 
+- New: Version - Added version info (version.h) to CELayoutEditor. This information appears in the "About Box". The defines CE_LAYOUT_EDITOR_MAJOR_VERSION, CE_LAYOUT_EDITOR_MINOR_VERSION and CE_LAYOUT_EDITOR_RELEASE_NUMBER allow the programmer to query the current editor's version. 
+- New: Built With - Added 'Built With' information (third party applications used to construct CELayoutEditor) to the "About" box. 
+- Change: Display mode - The skin multi-selection display mode radio box has been expanded to properties as well. When 'Show All' option is chosen, all the properties that appear in at least one element in the current user selection will be displayed in the property grid (i.e. common and non common properties). If 'Show Only Common' is picked instead, only the properties that appear in EVERY single element in the current user selection will be displayed (i.e. common properties). 
+- Change: Documentation - Updated readme.txt and AUTHORS.txt files. 
+- Change: GetPropertyIterator() - Replaced all occurrences of getIterator() by getPropertyIterator() to access the properties of a window so as to not confuse the compiler with EventSet and PropertySet (which requires a couple of casts to fix). 
+Before: 
+	CEGUI::PropertySet::Iterator propIt = (wx_static_cast(CEGUI::PropertySet*, wx_const_cast(CEGUI::Window*, pWindow)))->getIterator(); 
+After: 
+	CEGUI::PropertySet::Iterator propIt = pWindow->getPropertyIterator(); 
+- Change: Image & TextColours - The "Image" and "TextColours" properties are no longer "fake" properties but instead normal ones. 
+- Change: Code comments - Improved and added some code comments (our perpetual task). 
+- Removal: GetProperty() - Removed EditorDocument::GetProperty() obsolete function. 
+- BugFix: Splash Screen - The splash screen file (splash.png) is now copied in the post-build step to both the VS2003 (VC++7.1) and VS2005 (VC++8) directories, thus avoiding the 'file not found' error if run from inside the VS IDE. 
+
+07-12-2007(fjeronimo)
+- New: ChangeLog.txt - Added a high-level view of the changes performed between releases. It is empty at the moment.
+- New: Readme.txt - Added an introductory text that should help new users build the editor (reference to the online
+guide located in the forums).
+- New: AUTHORS.txt - Added a file which lists all the primary authors and contributors to the CELayoutEditor project.
+
+06-12-2007(fjeronimo)
+--> see http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2821
+- New: VEH Support - Added Vectored Exception Handling (VEH) support under Windows platforms and debug builds (this option is ignored in release builds). The VEH handler 
+is registered at program startup and is responsible for intercepting all thrown exceptions (both CPP & SEH Win32 ones). This includes normal thrown exceptions, unhandled ones, fatal 
+ones (like access violations) and explicitly raised ones (via RaiseException()). Thanks go to Roger Orr (rogero@howzatt.demon.co.uk) for all the help he provided in the process.
+- New: Stack Trace - Added stack trace support if running under Windows. The stack trace mechanism includes support for multiple stack trace processing and "eaten" exceptions
+detection (caught but not processed/logged exceptions).Unfortunately, the code is non-portable, although plans are being made for linux support in the near future.
+- New: Exception code retrieval - Added support for exception code retrieval. See 'Stack Trace' entry above for more info.
+- New: Exception flags retrieval - Added support for exception flags retrieval. See 'Stack Trace' entry above for more info.
+- New: Exception type retrieval - Added support for exception type retrieval (using RTTI). See 'Stack Trace' entry above for more info.
+- New: Exception line & file - Added support for line and file retrieval for CEGUI exceptions. See 'Stack Trace' entry above for more info.
+- New: Exception handling configuration - The new features added above are fully configurable via the defines present in Config.h (CHECK_STACK_TRACES; 
+SHOW_EXCEPTION_FLAGS; SHOW_EXCEPTION_CODE; SHOW_EXCEPTION_TYPE; CHECK_EATEN_EXCEPTIONS; CHECK_MULTIPLE_STACKS and APPEND_MULTIPLE_STACKS).
+- New: Logger - The logger is now setup right from the start (and not only when CEGUI is initialized). This allows for the contemplation of errors when performing the CELayoutEditor setup. The log
+file is now named CELayoutEditor.log instead of CEGUI.log.
+- Change: RTTI - Project now supports RTTI in both VS2003 and VS2005.
+- Change: Lint files - Lint files have been updated.
+
+22-11-2007(fjeronimo)
+--> see http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2811
+- New: _CPPUNWIND - Added explicit _CPPUNWIND to force CPP exception handling in Visual Studio 2005 & 2003 because in some cases the /EHsc compiler options gets ignored.
+- New: Asserts - Added many assert verifications to the solution.
+- New: PC-Lint configuration files - Added PC-Lint configuration files to CELayoutEditor at Docs\Lint. See PC-Lint entry below for more details.
+- New: Log macros - Added LOG_EXCEPTION_SAFE macro, useful for catching exceptions inside a destructor (which should never throw exceptions).
+- Change: PC-Lint - Run PC-Lint (8.00w) on the project. Many style changes including (but not limited to):
+	* Removed unused variables.
+	* Removed unused includes.
+	* Prevented exceptions in destructors.
+	* Nomenclature fixes (still a long way to go).
+	* Initialized variables (notably during construction).
+	* Added code validations (e.g. null pointer checks).
+	* Renamed local variables that were hiding other global (or possibly even local) elements of lower scope.
+	* Explicitly marked unused function return value as (void)func().
+	* Added C++ casts where needed (static and const casts).
+	* Removed unreachable code warnings.
+	* Added missing destructors. 
+	* Avoided, whenever possible, calling virtual members during construction and destruction (since the base versions of these functions and never the derived would be called).
+	* Used scoping operator to access static class members whenever possible (instead of using the instances directly).
+	* Prevented unqualified virtual function calls.
+	* Preferred constructor initialization list instead of assignment inside constructor for variable setup.
+	* Reduced prototype coercion.[/list][b]- Change: Const use -[/b] Improved const use throughout the code (including const member functions, const parameters and const ref parameters).
+- Change: Replaced static_cast by wx_static_cast, which is safer and reverts back to C-style casting if static_cast is not supported.
+- Bugfix: Memory leaks - Cleaned a couple of memory leaks by freeing allocated custodial pointers.
+- Bugfix: Empty view check - Fixed a situation in EditorCanvas::OnKeyDown() that would cause a fatal error when trying to perform operations on an empty view.
+- BugFix: Text colour crash - Fixed a crash in EditorDocument::HandleColoursUpdate when the user tried to modify the text color (via shift drag) of a window that didn't support the TextColours property.
+- Bugfix: Default color - Fixed a bug in EditorDocument::HandleColoursUpdate() where the default color was always being chosen as the upper left corner of the rectangle (i.e. missing break statements in the switch/case).
+- Bugfix: Mouse movement modification - Fixed a bug in EditorDocument::HandleMouseMoved where the function was always flagging a modification even when one wasn't being performed.
+
+05-11-2007 (fjeronimo)
+---> see http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2796
+- New: Splash Screen - Added a splash screen at program startup (art made by Frederico Martins). 
+- New: Icons - Added a file icon (windows only), an application icon in the main frame and an "About" box icon (art made by Frederico Martins). 
+- New: Compile Message Macros - Added macros (COMPILE_*) that allow the programmer to output static compiler messages and warnings during builds. These are useful for build checks (see below) and for task lists (TODO, FIXME, HACK and MINOR). The define SHOW_BUILD_MESSAGES indicates if they are to be processed (1) or not (0). The define SHOW_BUILD_TASKS_AS_WARNINGS determines if these task lists appear as normal compiler messages (0) or as warnings (1). 
+- New: Build checks - Added build checks (new file BuildChecks.h), that ensure the correct wxWidgets version is being used (2.8.* or higher), that the necessary wxWidgets configuration is set (wxUSE_GLCANVAS, wxUSE_EXCEPTIONS & wxUSE_ABOUTDLG) and that the correct compiler version is being used (if Visual Studio). 
+- New: Visual studio post-build steps - Added post-build steps to the VS2005 and VS2003 projects that copy the required CEGUI dlls and the splash screen image to the executable directory. This should greatly facilitate the building process for new users and for experienced ones as well (especially those that are changing the CEGUI codebase as well and want to see their changes immediately reflected in the editor without having to manually copy the files). 
+- New: Project categories - Added category filters (folders) to VS2003 and VS2005 solutions, to better organize the project structure. 
+- Change: Improved "About" box - Replaced old "About" box with an improved one which holds much more information. 
+- Change: VS2003 update - VS2003 project has been updated to reflect the latest changes. It is functionally equivalent to the VS2005 project. 
+- Change : Cleaning - Quite a bit of code realignment and cleaning. This is being done little by little and every new update will include this task. 
+- Removal: VC6 solution removal - Visual Studio 6 is no longer officially supported. 
+- BugFix: VS2003 debug linker directories - Corrected a problem with linker directories in VS2003 solution during debug builds (changed /ZI to /zi). 
+
+21-10-2007 (fjeronimo):
+---> see http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2783
+- BugFix: Fixed two situations where a crash would occur if the CELayoutEditor ini file didn't exist (i.e. first time CELayoutEditor is run).
+
+19-10-2007 (fjeronimo):
+---> see http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2783
+- New: Exception handling - More robust exception handling mechanism provided by overridding the wxApp::OnUnhandledException() and wxApp::HandleEvent() functions. This allows the application to catch, log and inform the user of all thrown unhandled C++ exceptions.
+NOTE: wxWidgets must be built with wxUSE_EXCEPTIONS = 1 (default).
+- New: Fatal Errors - Fatal errors (such as an unhandled win32 exception or a fatal signal under Unix) are also caught by overriding wxApp::OnFatalException(). A debug report (with the current system state, stack trace, log file and configuration file) is now generated at the user's convenience.
+- New: Helper Exception Macros - Created helper macros LOG_EXCEPTION, LOG_EXCEPTION_RETURN, SHOW_EXCEPTION and SHOW_EXCEPTION_RETURN  that catch and log CEGUI, standard and non-standard exceptions. The last two also inform the user of the exception (with a message box). The RETURN variant of each macro allows to supply a return value of any type if an exception is detected.
+- New: Log Wrappers - Added wrappers around the wxLog* family of functions that besides processing the default wxWidgets behavior for the message type also save the message to log (CEGUI.log).
+NOTE: Be sure that the arguments supplied are wxStrings or wxChar* and not  other string types (like CEGUI::String or char*) because it could lead to unpredictable  results and Win32 'Access Violation' exceptions that will crash the application (activating CELayoutEditor::OnFatalException() method). See BugFix below for more info.
+- New: StringHelper Placebos - Added placebo functions to ToWXString() and ToCEGUIString() that allow to pass the string in the already correct format and return it untouched. This is useful to ensure that the call always works even when we don't know beforehand the type of string that will be processed (for instance in macros like LOG_EXCEPTION). 
+- New: Terminate on unhandled - Added #define TERMINATE_ON_UNHANDLED which specifies if the application is to exit when an unhandled exception is found (1) or not (0).
+- New: Show unhandled - Added #define SHOW_UNHANDLED which specifies if an unhandled exception is to be logged and shown to the user (1) or only logged (0).
+- New: Prevent save on unhandled - Added #define PREVENT_SAVE_ON_UNHANDLED which specifies if the user is allowed to save the file after an unhandled exception (0) or not (1). Only relevant if TERMINATE_ON_UNHANDLED is set to 1.
+- New: Use modal message boxes - Added #define USE_MODAL_MESSAGE_BOXES which specifies if message boxes (info, error, warning) are displayed in modal (1) or modeless mode (0).
+- Change (Debug) : Skin changer exception handling - Added exception handling when changing a widget skin. The user is informed of what went wrong. 
+- Change (Minor): Tag removal - Removed all FJDS tags (mine) that were starting to pollute the code.
+- Change: Code cleaning - Reformatted and commented some of the existing code.
+- BugFix: Fatal Log Exceptions - Fixed several locations where CEGUI strings were being passed directly to wxWidgets log functions, thus creating an unstable system processing that could lead to fatal errors, like Win32 'Access Violation' exceptions. Log functions are now being supplied only with wxStrings or wxChar* parameters with conversions being assured by the StringHelper::ToWXString() function.
+- BugFix : Lock/Unlock tooltip text - The (un)lock icons tooltip now display the correct text.
+
+8-10-2007 (fjeronimo)
+---> see http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2766
+- New : Skin chooser - Possibility to change the widget skin in realtime (dropdown with possible skins in the main dialog), with support for single or multi-selection. In the later case, the user can choose to display (via a radio box) only the common skins in the dropdown or all existing ones for the widget types (in which case, the widgets that cannot apply the chosen skin are simply ignored). In both cases, changes are applied immediately in runtime and all the user-editable property values are kept. 
+- New : Apply Layout Skin - New menu command 'Apply Layout Skin' which maps the chosen skin to ALL the widgets in the current layout. 
+- New : Lock/Unlock selection - Possibility to lock/unlock the current widget selection via a toolbar button. 
+- New : Widget Parent filter - Possibility to filter the widgets in the 'Add window' dialog by their need of a parent or to display them all. 
+- New : Widget type display - The main dialog now displays the type of the currently selected widget (multi-selection is not yet supported). 
+- New : VS2005 solution - Added a Visual Studio 8 (2005) solution. The solutions uses the environment variables present in the VS2005 guide at http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2760. 
+- Bug Fix : Unselection crash - Fixed a bug where a crash would occur if the user unselected the top/last widget. 
+- Change : Code realignment - Some code realignment and other cosmetic modifications. 
+- Change : Misc - Minor changes. 
+
+8-6-2007:
+-Removed warning when a scheme is already loaded (Rackle's patch)
+-Supported properties through the INI file (Ppl's patch)
+
+1-6-2007:
+-Added gcarltons patch (part which wasn't committed yet) which helps in pixel- vs. relative resizing;
+-Added tooltips;
+
+26-1-2007:
+-Removed Layouts from the resource groups and INI file, so that users can load and save layouts everywhere they want to.
+-Fixed mantis bug #134
+-Fixed snap-to-grid
+-Added support for wxWidgets 2.8.0 (thanks granx!)
+-Fixed bug #131 (align width)
+-Fixed bug #127 (scrollable pane's children)
+
+4-11-2006
+-Applied Ludi's patch, which fixes the background + grid rendering order problem.
+-Fixed mantis ticket #94 (Removed dependency on TaharezLook for background image)
+-Fixed mantis ticket #114 (Disabled all __auto_ window saving)
+-Added a OnPreSave method to handle auto window disabling and such.
+-Added a file for the Inno Setup installer generator.
+-Added convenience methods while adding tabs and menu items.
+-Fixed mantis ticket #91 (resize bug).
+-Fixed about box text.
+
+12-8-2006
+-Added tabcontrol support.
+-Added menu support.
+-Several fixes.
+
+13-5-2006
+-Applied Gafnium's valuable patch.
+	-Recursive copy/paste.
+	-Saving of a current selection.
+	-Apparent crash-fix in StringHelper.
+	-Canvas is now without border. Makes calculations more clear.
+-Removed Background class.
+-Added background functionality in Document.
+-Added background visibility state to INI file.
+
+19-3-2006
+-Removed Tahoma font because it is copyrighted;
+-Updated the version to match cegui's (0.4.1).
+
+18-3-2006
+-Added renaming via a "fake" property (Mantis ticket 36);
+-Fixed parameter mix up in addWindow;
+-Updated project file: VS directories changes into "additional directories" to support maintenance on both 0.4 and 0.5 branch.
+
+14-2-2006:
+-Fixed Mantis ticket 33.
+
+6-1-2006:
+-Fixed alignment + selection dragging bug;
+-Exchanged abstraction for flexibility concerning Box iteration. Doesn't really matter since iterators are already abstract on their own;
+
+4-1-2006:
+-Fixed snap to grid (dialog + ini storage);
+-Removed FreeImage (not required anymore);
+
+18-12-2005:
+-Applied Mantis ticket 27 suggestion;
+-ElementResizer is renamed to WindowBox + refactored;
+-Cursor changes per resize box (or defaults when not on a resize box);
+-Many style changes (removing hungarian style + capitals for method name beginnings);
+
+14-12-2005:
+-Grid setting + snap to grid;
+-Fullscreen support;
+-Accelerators for common menu items;
+
+18-11-2005:
+-Restored the Text edit field;
+-Applied Eddie's unicode / linux fixes patch;
+-Dynamic loading of fonts and scemes;
+-Default font support;
+-Removes unused schemes.
+
+13-10-2005:
+-Use of an undoable and redoable AddWindow command;
+-Minor changes because of this: AddWindow method returns the created window now;
+-Selection class changed slightly;
+-The Edit menu has become a member of the Frame, so it can be passed as the wxCommandProcessors undo/redo menu;
+-Removed some logstatements.
+
+8-10-2005:
+-The editor now saves layouts using the internal 'writeWindowLayoutToStream' methods, which manages what properties should be written. It also saves information in the new Unified format.
+-Updates the documentation a bit.
+
+3-9-2005:
+-Ported to wxWidgets
+
+13-6-2005:
+-Compiled against CEGUI 0.2.1.
+-Commented out some logs.
+
+5-5-2005:
+-Applied littie path-restore path by "cgarlton".
+-Options are now saved to and loaded from an INI file.
+-Removed some more warnings
+
+27-3-2005:
+-Removed many compile warnings;
+-looks can be selected, and a default can be set, so you're not 'blinded' with all available windows;
+
+14-3-2005:
+-Removed many redundant properties for size and position;
+-Added "Visible" to the supported property list;
+-Added support for the WindowsLook;
+-Updated the sample layout with some WindowLook content;
+-Removed unused statusbar panes.
+
+18-1-2005:
+-Added selection-movement by key-presses.
+-Changed the demo layout so that it shows up in the upper right corner, in stead of under the dialog.
+-EditorDoc: moved 'onModify' from the private to the public section, so it can be called for the SelectionMover as well.
+-EditorView: added WM_KEYDOWN and WM_KEYUP handlers.
+-SelectionMover: added functionality for key-movement handling.
+-Changed project settings' working directory.
+
+1-1-2005:
+-Fixed: no more crashes when saving a MultiListColumn.
+-Fixed: cancel handling on the "do you want to save?" dialog now functions as expected.
+-Fixed: "close layout" button is now enabled when pressing "add layout".
+-Fixed: automatically generated "__TabPane__" - tagged windows are now skipped during saving and rebuilding of the tree control.
+-Addition: The program now checks whether its valid to add a Window as a child to a selected Window. This is because some
+ widgets can only programmarically be given children, such as a ListBox or a MultiListComlum. When you try to add a child
+ to such a widget, you get a friendly message.
+
+7-11-2004:
+-Edit boxes for Left and Top are swapped.
+-Added background loading (bmp,jpg,png and tga).
+
+10-10-2004:
+
+Bug-fixes:
+-When clicking a generated (__auto_) window, search for a parent non-auto window and select that one.
+-When pressing Enter or Escape, the dialog doesn't close anymore.
+-Added an "erase" icon to the toolbar
+-Half fix to solve the resize-problem when the toolbar is visible. For the moment just keep the toolbar visible and you'll be fine ;-)
+
+3-10-2004:
+
+This release is a real release build, both CEGUI dll's as the application itself. Besides,
+the MFC library is linked statically now. This has less requirements on client systems.
+
+Added copy/cut/paste/delete. Please note that a copy does not copy an entire hierarchy,
+so if you need to copy an entire branche you will have to do this manually from root to
+childs.
+
+Fixed a bug which didn't read the correct metrics mode from the AddWindow dialog.
+
+26-8-2004:
+
+First stable (enough) release of the editor. Required dll's are included in the zip. You can have one layout open at the same
+time. This will change in a future version. So you might get some "save layout first?" questions now and then.
+
+Known issues:
+-Resizing / dragging a window happens relative to it's parent instead of absolute. So if you drag two windows, who 
+reside at a different level in the hierarchy, the one window drags / resizes "faster" than the other.
+
+-Cannot build application statically to MFC. Looking into this.
+
+-Sometimes when selecting a window, a different window gets selected in the browse-tree. Before adding a child window,
+it never hurts to actually select the window again in the tree.
+

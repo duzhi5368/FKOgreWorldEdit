@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OgrePro", "OgrePro.vcproj", "{DDA94B11-34D3-41F5-A56C-C2D364680F97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		DebugStaticLib|Win32 = DebugStaticLib|Win32
+		Release|Win32 = Release|Win32
+		ReleaseStaticLib|Win32 = ReleaseStaticLib|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDA94B11-34D3-41F5-A56C-C2D364680F97}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DDA94B11-34D3-41F5-A56C-C2D364680F97}.Debug|Win32.Build.0 = Debug|Win32
+		{DDA94B11-34D3-41F5-A56C-C2D364680F97}.DebugStaticLib|Win32.ActiveCfg = Debug|Win32
+		{DDA94B11-34D3-41F5-A56C-C2D364680F97}.DebugStaticLib|Win32.Build.0 = Debug|Win32
+		{DDA94B11-34D3-41F5-A56C-C2D364680F97}.Release|Win32.ActiveCfg = Release|Win32
+		{DDA94B11-34D3-41F5-A56C-C2D364680F97}.Release|Win32.Build.0 = Release|Win32
+		{DDA94B11-34D3-41F5-A56C-C2D364680F97}.ReleaseStaticLib|Win32.ActiveCfg = Release|Win32
+		{DDA94B11-34D3-41F5-A56C-C2D364680F97}.ReleaseStaticLib|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

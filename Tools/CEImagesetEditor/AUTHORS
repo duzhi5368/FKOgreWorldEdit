@@ -1,0 +1,47 @@
+CEImagesetEditor 0.1.0
+An editing application for CrazyEddie's GUI System 'Imageset' files.
+
+Originally copyright ©2006 Martin Fleurent.
+Currently copyright ©2006-2007 CEImagesetEditor Team & Contributing Authors
+
+
+Introduction
+============
+CEImagesetEditor originally started life as a CEGUI community project by
+Martin Fleurent (martignasse).  Development was fast paced at first, but alas
+things eventually slowed to a halt.
+
+Due to the need for some kind of tool set for Crazy Eddie's GUI System, the
+CEGUI Team decided to revive this project and to develop and maintain it
+directly.
+
+We would like to take this opportunity to thank martignasse for his efforts
+with this tool; without that initial work there would be no CEImagesetEditor.
+
+
+The following is a list of primary authors and contributors for CEImagesetEditor:
+
+CEImagesetEditor Team Authors
+=============================
+Frederico Jerónimo (fjeronimo) 	 - Current maintainer.
+
+Paul D Turner (crayzed / CrazyEddie) - Previous Project co-ordinator / code lead.
+Tomas Lindquist Olsen (lindquist)    - Additional Win32 testing & premake support.
+
+
+Community Contributors
+======================
+Martin Fleurent (martignasse)        - Original application code.
+Tuan Kuranes                         - Various tweaks to martignasse's original code.
+
+
+Have we missed you?
+===================
+If you feel that you have been ommitted from this list, then please contact me 
+(frederico.jeronimo@ignite-games.com) or scriptkid (pkooman@gmail.com) and let us 
+know who you are and what you did, and we'll be sure to correct the mistake as 
+soon as possible.
+
+Frederico Jerónimo (fjeronimo) & the CEImagesetEditor Team
+Added : 05/08/06
+Updated : 10/12/07

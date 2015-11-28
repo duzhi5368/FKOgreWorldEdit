@@ -1,0 +1,77 @@
+DisplayLayer工程是显示层的实现，以DLL的形式提供。
+现在封装了场景系统相关的类和实现。现列表如下：
+
+ISceneSystem
+	场景系统的纯虚接口类，以单件模式提供访问，即通过ISceneSystem::getSingeton()获得其实例访问成员函数。
+	在Ogre图形系统启动后，必须调用静态函数ISceneSystem::init(sceneMgr);初始化，只有调用了init之后才能使用此接口的函数。
+	Ogre图形系统关闭前要调用ISceneSystem::shutdown();关闭之。
+	场景系统可以由多个场景（IScene）组成，通过loadScene或createScene载入或创建一个新的场景。
+	另外，ISceneSystem从TFactorySystem<ISceneObjectFactory>派生，意味着ISceneSystem拥有ISceneObjectFactory的工厂列表及其操作能力。
+	SceneSystem类是ISceneSystem类的实现类。
+	
+IScene
+	场景的纯虚接口类，是指单一的一个场景，由ISceneSystem创建。
+	一个场景由若干场景对象组成，可以通过createSceneObject创建新的场景对象，其中参数type对应ISceneObjectFactory工厂类型。
+	场景对象可以通过destroySceneObject销毁。
+	clear可以销毁所有场景物件。
+	一个场景可以包含多个动画，场景通过ISceneSystem::loadScene载入后，会自动载入文件中存在的动画，可通过IScene::getAnimationStateController函数获得此动画的播放控制器
+	场景通过ISceneSystem::loadScene载入后，会自动播放此场景文件中名称为“autoplay”的帧动画。
+	Scene类是IScene类的实现类。
+	场景的载入和保存通过SceneSerializer实现。
+
+ISceneObject
+	场景对象的纯虚接口类，是指单一的一个场景对象，由IScene创建。
+	场景对象封装了对此对象的操作，如位置、旋转、缩放等等。
+	ISceneObject类可派生出各种各样的实现，如NullObject（空对象）、EntityObject（模型实体对象）、CharacterObject（人物对象）、SoundObject（声音对象，未实现）、EffectObject（特效对象，未实现）等等。
+	每个ISceneObject类的对象实现都必须实现其工厂类，即从ISceneObjectFactory派生出一个属于此对象实现的工厂类，实现其create、destroy、和getType函数。然后通过ISceneSystem::addFactory添加到场景系统中，这样才能通过IScene::createSceneObject创建和销毁。
+	系统默认的场景对象已经在ISceneSystem::init执行的时候自动添加到场景系统中，所以无需再次调用addFactory方法。
+	每个场景对象的实现都可以有其自己的独特函数，如EntityObject，拥有setAlpha函数，用来设置模型的透明度，此函数是他独有的。
+
+NullObject
+	空的场景对象。
+	从ISceneObject派生的场景对象，主要封装了SceneNode的操作
+
+EntityObject
+	模型实体场景对象。
+	从NullObject对象派生，把一个Entity挂接在SceneNode上组成了EntityObject。
+	有getAnimationController函数可以获得动画控制器来控制其中的骨骼动画。
+
+CharacterObject
+	人物对象。
+	从EntityObject对象派生。
+	以并行有限状态机来封装人物的各种行为，如行走、跑步、攻击等行为。
+	提供一些如walkTo、runTo、moveTo、stand、turnTo、fadeInOut之类的人物行为函数。
+
+PFSMController
+	并行有限状态机实现类。通过模板类的方法创建，在CharacterObject中自动创建。
+	关于并行有限状态机的实现原理，在这里有篇文章介绍：http://book.csdn.net/bookfiles/329/10032913217.shtml
+	
+IAnimationStateController
+	动画状态控制器的纯虚接口类。在IScene中自动创建，也可以通过IScene手动创建。另外IEntityAnimationController也会用到他。
+	IAnimationStateController封装了一系列控制播放动画的函数。
+
+IEntityAnimationController
+	针对模型实体的骨骼动画的播放控制器的纯虚接口类，在EntityObject中自动创建。
+	此接口可实现模型实体的骨骼动画的播放控制。
+	此接口还可以实现模型实体的骨骼动画融合、过度（此功能暂未实现，但已留有接口）。
+
+MathEx
+	封装了几个简化操作四元数的函数，以后会逐渐增加更多的数学函数在此类中，以静态成员函数的方式提供
+
+SceneSerializer
+	场景序列化实现。
+	封装了importScene和exportScene，负责把场景保存成文件或从文件载入场景。
+	会根据文件类型自动判断是二进制还是XML格式，内部根据文件扩展名自动调用相应的序列化器进行操作（SneSceneSerializer或XmlSceneSerializer）。
+
+SneSceneSerializer
+	二进制格式的场景序列化实现。
+	扩展名为sne的场景文件将会自动使用此序列化器。
+	
+XmlSceneSerializer
+	XML格式的场景文件串行化器，兼容oFusion的OSM格式。
+	扩展名为osm的场景文件将会自动使用此序列化器。
+
+TFactorySystem
+	对象工厂设计模式的模板实现。
+	封装了addFactory、removeFactory、getFactory之类的对象工厂操作方法。
+	内部自动维护一个对象工厂列表。析构的时候自动会释放所有对象工厂。

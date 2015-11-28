@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout>
+<Window Type="DefaultWindow" Name="Root" >
+<Property Name="UnifiedAreaRect" Value="{{0.000000,0.000000},{0.000000,0.000000},{1.000000,0.000000},{1.000000,0.000000}}" />
+<Property Name="UnifiedMaxSize" Value="{{1.000000,0.000000},{1.000000,0.000000}}" />
+<Window Type="TaharezLook/FrameWindow" Name="MyTaharezFrame" >
+<Property Name="CaptionColour" Value="00FFFFFF" />
+<Property Name="EWSizingCursorImage" Value="set:TaharezLook image:MouseEsWeCursor" />
+<Property Name="MouseCursorImage" Value="set:TaharezLook image:MouseTarget" />
+<Property Name="NESWSizingCursorImage" Value="set:TaharezLook image:MouseNeSwCursor" />
+<Property Name="NSSizingCursorImage" Value="set:TaharezLook image:MouseNoSoCursor" />
+<Property Name="NWSESizingCursorImage" Value="set:TaharezLook image:MouseNwSeCursor" />
+<Property Name="Text" Value="A taharez frame." />
+<Property Name="TitlebarEnabled" Value="True" />
+<Property Name="TitlebarFont" Value="Commonwealth-10" />
+<Property Name="UnifiedAreaRect" Value="{{0.000000,50.000000},{0.000000,50.000000},{0.363750,50.000000},{0.445000,50.000000}}" />
+<Property Name="UnifiedMaxSize" Value="{{1.000000,0.000000},{1.000000,0.000000}}" />
+<Window Type="TaharezLook/Button" Name="Button1" >
+<Property Name="MouseCursorImage" Value="set:TaharezLook image:MouseArrow" />
+<Property Name="Text" Value="Click me!" />
+<Property Name="UnifiedAreaRect" Value="{{0.066323,0.000000},{0.831835,0.000000},{0.378179,0.000000},{0.939513,0.000000}}" />
+<Property Name="UnifiedMaxSize" Value="{{1.000000,0.000000},{1.000000,0.000000}}" />
+</Window>
+</Window>
+<Window Type="WindowsLook/FrameWindow" Name="MyWindowsFrame" >
+<Property Name="EWSizingCursorImage" Value="set:WindowsLook image:MouseEsWeCursor" />
+<Property Name="MouseCursorImage" Value="set:WindowsLook image:MouseArrow" />
+<Property Name="NESWSizingCursorImage" Value="set:WindowsLook image:MouseNeSwCursor" />
+<Property Name="NSSizingCursorImage" Value="set:WindowsLook image:MouseNoSoCursor" />
+<Property Name="NWSESizingCursorImage" Value="set:WindowsLook image:MouseNwSeCursor" />
+<Property Name="Text" Value="A Windows frame." />
+<Property Name="TitlebarEnabled" Value="True" />
+<Property Name="TitlebarFont" Value="Commonwealth-10" />
+<Property Name="UnifiedAreaRect" Value="{{0.000000,450.000000},{0.000000,50.000000},{0.363750,450.000000},{0.445000,50.000000}}" />
+<Property Name="UnifiedMaxSize" Value="{{1.000000,0.000000},{1.000000,0.000000}}" />
+<Window Type="WindowsLook/Editbox" Name="MyEditbox" >
+<Property Name="ActiveSelectionColour" Value="FF607FFF" />
+<Property Name="MaxTextLength" Value="1073741823" />
+<Property Name="MouseCursorImage" Value="set:WindowsLook image:MouseTextBar" />
+<Property Name="NormalTextColour" Value="FF000000" />
+<Property Name="SelectedTextColour" Value="FFFFFFFF" />
+<Property Name="Text" Value="Little sample window." />
+<Property Name="UnifiedAreaRect" Value="{{0.049141,0.000000},{0.165169,0.000000},{0.952062,0.000000},{0.415169,0.000000}}" />
+<Property Name="UnifiedMaxSize" Value="{{1.000000,0.000000},{1.000000,0.000000}}" />
+</Window>
+</Window>
+</Window>
+</GUILayout>

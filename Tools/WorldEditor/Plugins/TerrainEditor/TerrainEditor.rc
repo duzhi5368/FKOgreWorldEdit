@@ -1,0 +1,231 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\TerrainEditor.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "TerrainEditor.dll"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "TerrainEditor.dll"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG_TERRAIN_BRUSH DIALOGEX 0, 0, 142, 89
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_TYPE,7,17,53,59,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_STYLE,63,17,72,91,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "笔刷大小：10",IDC_STATIC_SIZE,7,34,86,8
+    CONTROL         "",IDC_SLIDER_SIZE,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,7,43,128,14
+    LTEXT           "笔刷力度：1.00",IDC_STATIC_STRENGTH,7,59,86,8
+    CONTROL         "",IDC_SLIDER_STRENTH,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,7,70,128,14
+    LTEXT           "笔刷形状：",IDC_STATIC,67,7,42,9
+    LTEXT           "笔刷类型：",IDC_STATIC,7,7,41,9
+END
+
+IDD_DIALOG_TERRAIN_PAINT DIALOGEX 0, 0, 145, 116
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "",IDC_BUTTON_TEXTURE_0,7,7,42,42,BS_NOTIFY | NOT WS_VISIBLE
+    PUSHBUTTON      "",IDC_BUTTON_TEXTURE_1,51,7,42,42,BS_NOTIFY | NOT WS_VISIBLE
+    PUSHBUTTON      "",IDC_BUTTON_TEXTURE_2,96,7,42,42,BS_NOTIFY | NOT WS_VISIBLE
+    PUSHBUTTON      "",IDC_BUTTON_TEXTURE_3,7,53,42,42,BS_NOTIFY | NOT WS_VISIBLE
+    PUSHBUTTON      "",IDC_BUTTON_TEXTURE_5,96,53,42,42,BS_NOTIFY | NOT WS_VISIBLE
+    PUSHBUTTON      "",IDC_BUTTON_TEXTURE_4,51,53,42,42,BS_NOTIFY | NOT WS_VISIBLE
+END
+
+IDD_DIALOG_TERRAIN_HEIGHT DIALOGEX 0, 0, 140, 95
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "调整高度",IDC_BUTTON_RAISE_HEIGHT,49,7,40,14
+    PUSHBUTTON      "无操作",IDC_BUTTON_NONE,7,7,40,14
+    PUSHBUTTON      "提升高度",IDC_BUTTON_RAISE_UP,91,7,40,14
+    PUSHBUTTON      "降低高度",IDC_BUTTON_RAISE_DOWN,7,26,40,14
+    PUSHBUTTON      "平滑表面",IDC_BUTTON_SMOOTH,49,26,40,14
+    PUSHBUTTON      "抹平表面",IDC_BUTTON_AVG,91,26,40,14
+    PUSHBUTTON      "选择地形",IDC_BUTTON_SELECTTERRAIN,7,45,40,14
+    PUSHBUTTON      "创建地形",IDC_BUTTON_CREATETERRAIN,49,45,40,14
+    PUSHBUTTON      "删除地形",IDC_BUTTON_DELETETERRAIN,91,45,40,14
+    PUSHBUTTON      "设置障碍",IDC_BUTTON_SETBLOCK_ON,7,66,40,14
+    PUSHBUTTON      "解除障碍",IDC_BUTTON_SETBLOCK_OFF,49,66,40,14
+    PUSHBUTTON      "隐藏障碍",IDC_BUTTON_SHOWBLOCK,91,66,40,14
+END
+
+IDD_DIALOG_CREATE_TERRAIN DIALOGEX 0, 0, 187, 81
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "创建地形快"
+FONT 9, "宋体", 400, 0, 0x86
+BEGIN
+    DEFPUSHBUTTON   "确定(&O)",IDOK,33,60,50,14
+    PUSHBUTTON      "取消(&C)",IDCANCEL,100,60,50,14
+    GROUPBOX        "地形属性",IDC_STATIC,7,7,173,46
+    RTEXT           "地形X精度：",IDC_STATIC,11,19,46,10
+    RTEXT           "地形Y精度：",IDC_STATIC,95,18,46,10
+    COMBOBOX        IDC_COMBO_TILE_X,58,15,34,128,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_TILE_Y,142,15,34,122,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "地形大小：",IDC_STATIC,11,35,46,10
+    EDITTEXT        IDC_EDIT_SIZE,57,34,53,12,ES_AUTOHSCROLL
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG_TERRAIN_BRUSH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 135
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 84
+    END
+
+    IDD_DIALOG_TERRAIN_PAINT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 138
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 95
+    END
+
+    IDD_DIALOG_TERRAIN_HEIGHT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 133
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_DIALOG_CREATE_TERRAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 74
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\TerrainEditor.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

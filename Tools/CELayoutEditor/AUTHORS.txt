@@ -1,0 +1,44 @@
+CELayoutEditor 0.6.0
+http://www.cegui.org.uk
+
+Copyright 2004 - 2007 CELayoutEditor Team & Contributing Authors
+
+The following is a list of primary authors and contributors for CELayoutEditor.
+
+CELayoutEditor Team:
+--------------------------------
+
+Patrick Kooman (Scriptkid) - Main application
+Frederico Jeronimo (fjeronimo) - Major patches; looknfeel switch, selection (un)locking, exception handling, lint, build checks, "About" box, bug fixes and so on. For details see:
+   * http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2766
+   * http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2783
+   * http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2796
+   * http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2811
+   * http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2821
+   * http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2825
+
+Main Contributors:
+--------------------------
+
+Sam Jansen (http://bung.homeunix.net/bung/) - Alignment class
+Paul D Turner (CrazyEddie) - Linux makefiles and Unicode arrangements
+Olivier Delannoy (Dalfy) - Migration to 0.5 support
+"Xirnohn" - patch including tooltip support and color setup for widgets
+"Tuan Kuranes" - patch including tabcontrol support
+
+Special Thanks:
+-----------------------
+
+Frederico Martins (innervortex@hotmail.com) - Splash screen and application icons.
+Roger Orr (rogero@howzatt.demon.co.uk) - Invaluable exception handling tips.
+
+Have We Missed You?
+--------------------------------
+
+If you feel that we have missed you from some section of this list, then please contact me (frederico.jeronimo@ignite-games.com) or scriptkid (pkooman@gmail.com) and 
+let us know who you are and what you did, and we'll correct the mistake as soon as possible.
+
+Frederico Jerónimo (fjeronimo)
+Added : 07/12/07
+Updated : 18/12/07
+

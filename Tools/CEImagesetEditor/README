@@ -1,0 +1,58 @@
+CEImagesetEditor 0.1.0
+An editing application for CrazyEddie's GUI System 'Imageset' files.
+
+Originally copyright ©2006 Martin Fleurent.
+Currently copyright ©2006-2007 CEImagesetEditor Team & Contributing Authors
+
+Introduction
+============
+Crazy Eddie's GUI System uses a variety of xml data files for it's various
+resources, possibly one of the most important of these is the Imageset.
+
+The Imageset essentially takes a source image file, and defines regions of
+that file as named 'Images' which the core CEGUI library can then draw to the
+display.  Since editing these xml files by hand is no fun at all, and can take
+a large amount of time, we have this nice little tool for editing them
+interactively.
+
+Documentation
+=============
+See also the following files:
+COPYING   - Contains the license terms for using the application.
+INSTALL   - Building / install instructions for GNU/Linux users. For Windows (VS2003 
+            & VS2005) check http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2780.
+AUTHORS   - Contains a list of authors and contributors.
+ChangeLog - Contains a list of changes made between releases.
+
+For the very latest information and help, visit the project home page at
+http://www.cegui.org.uk.
+
+Supported Systems
+=================
+CEImagesetEditor is currently known to compile and run on the following
+systems:
+
+Various flavors of GNU/Linux using gcc.
+Microsoft Windows running VC++7.1 or VC++8
+
+The project includes solutions for both VS2003 and VS2005. For detailed instructions 
+on how to build them, check http://www.cegui.org.uk/phpBB2/viewtopic.php?t=2780.
+
+It is very possible that the system will compile and run on other systems and
+compilers, though the above systems have been tested.
+
+Requirements
+============
+As well as one of the above supported systems, CEImagesetEditor also requires
+the use of some third party external libraries.  These libraries are as
+follows:
+
+Crazy Eddie's GUI System (0.5.0 or better) (http://www.cegui.org.uk)
+wxWidgets (2.6.0 or better) (http://www.wxwidgets.org)
+
+And above all else, have fun with it!
+
+Frederico Jerónimo (fjeronimo) & the CEImagesetEditor Team
+Added : 05/08/06
+Updated : 10/12/07
+

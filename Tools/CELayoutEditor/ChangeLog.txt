@@ -1,0 +1,11 @@
+CELayoutEditor 0.6.0
+http://www.cegui.org.uk
+
+Copyright 2004 - 2007 CELayoutEditor Team & Contributing Authors
+
+The following is a high-level view of changes made to the system between releases. For a low-level view (SVN update reports) check releasenotes.txt.
+
+Release 0.6.0 
+=====================
+
+Not yet released.
